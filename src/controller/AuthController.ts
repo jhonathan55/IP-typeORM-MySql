@@ -10,7 +10,7 @@ class AuthController {
     static login = async (req: Request, res: Response) => {
 
         const { username, password } = req.body
-
+        
         if (!(username && password)) {
             return res.status(409).json({ message: 'user & pass are required' })
         }
