@@ -3,16 +3,24 @@ import { Request, Response } from "express"
 import { User } from "../entity/User"
 import { AppDataSource } from "../data-source"
 import { validate } from "class-validator"
+import { Profile } from "../entity/Profile"
+
 
 export class UserController {
 
     static newUser = async (req: Request, res: Response) => {
 
-        const { username, password, role } = req.body
+        const { username, password, role, name } = req.body
         const user = new User();
         user.username = username;
         user.password = password;
         user.role = role;
+
+        const profile = new Profile();
+        profile.name = name;
+
+        user.profile = profile;
+       
         const validationOpt = {
             validationError: { target: false, value: false },
         }
@@ -40,7 +48,9 @@ export class UserController {
         const userRepository = AppDataSource.getRepository(User)
         let users;
         try {
-            users = await userRepository.find()
+            users = await userRepository.find({
+                relations: ["profile"]
+            })
         } catch (error) {
             res.status(500).json({
                 message: "Error getting users",
