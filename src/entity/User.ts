@@ -35,7 +35,10 @@ export class User {
     })
     @JoinColumn()
     profile:Profile
-   
+
+    
+
+    
    
 
     hashPassword():void{

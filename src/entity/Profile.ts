@@ -1,4 +1,6 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Photo } from "./Photo";
+
 import { User } from "./User";
 
 
@@ -13,5 +15,12 @@ export class Profile {
         onDelete:"CASCADE"
     })
     user:User
+
+    @OneToMany(()=>Photo,(photo)=>photo.profile,{
+        onDelete:"CASCADE"
+        })
+    photos:Photo[]
+    profile:Profile
+   
 
 }
