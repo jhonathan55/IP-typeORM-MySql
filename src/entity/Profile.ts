@@ -20,7 +20,7 @@ export class Profile {
         onDelete:"CASCADE"
         })
     photos:Photo[]
-    profile:Profile
+    
    
 
 }

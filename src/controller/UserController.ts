@@ -6,8 +6,6 @@ import { validate } from "class-validator"
 import { Profile } from "../entity/Profile"
 import { Photo } from "../entity/Photo"
 
-
-
 export class UserController {
 
     static newUser = async (req: Request, res: Response) => {

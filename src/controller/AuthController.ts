@@ -34,7 +34,7 @@ class AuthController {
             config.jwtSecret,{expiresIn:'1h'}
         )
 
-        return res.status(200).json({message:'login',token})
+        return res.status(200).json({message:'login',token,status:200})
 
     }
 }
